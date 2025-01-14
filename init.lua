@@ -9,6 +9,11 @@ require('packer').startup(function(use)
       run = ":MasonUpdate" -- update registry stuff
     }
 
+    -- manage nvim-treesitter
+    use {
+      "nvim-treesitter/nvim-treesitter"
+    }
+
     -- manage alpha-nvim (splash screen)
     use {
       'goolord/alpha-nvim',
@@ -43,7 +48,6 @@ require('packer').startup(function(use)
     use 'nvim-tree/nvim-tree.lua'
     vim.keymap.set('n', '©', ':NvimTreeOpen<CR>', { noremap = true, silent = true })
 
-    vim.cmd("colorscheme desert")    
     vim.opt.number = true          -- Show line numbers
     vim.opt.tabstop = 2            -- Number of spaces a tab character occupies
     vim.opt.shiftwidth = 2         -- Number of spaces for each level of indentation
@@ -134,3 +138,18 @@ require("nvim-web-devicons").setup {
   default = true;
 }
 
+require('packer').startup(function()
+  use 'navarasu/onedark.nvim'
+end)
+
+require('onedark').setup {
+  style = 'dark', -- Options: dark, darker, cool, deep, warm, warmer
+  transparent = true,
+}
+
+require('onedark').load()
+
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"c"}, -- Add more languages if needed
+  highlight = { enable = true },
+}
